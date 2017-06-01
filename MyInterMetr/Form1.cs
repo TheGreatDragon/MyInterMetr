@@ -361,7 +361,7 @@ namespace MyInterMetr
         }
         private void AboutProgramm(object sender, EventArgs e)
         {
-            MessageBox.Show("InterMetr\nВерсия 0.5\nCopyright © 2015 - 2017\nГабдрахманов А.Г.", "О программе");
+            MessageBox.Show("MyInterMetr\nВерсия 0.5\nCopyright © 2015 - 2017\nГабдрахманов А.Г.", "О программе");
         }
 
         private void this_closed(object sender, EventArgs e)
