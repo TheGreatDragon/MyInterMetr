@@ -1,0 +1,10 @@
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Release\MyInterMetr.exe.config
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Release\MyInterMetr.exe
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Release\MyInterMetr.pdb
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.Form1.resources
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.Form2.resources
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.Properties.Resources.resources
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.csproj.GenerateResource.Cache
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.exe
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.pdb
+C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Release\MyInterMetr.csprojResolveAssemblyReference.cache
