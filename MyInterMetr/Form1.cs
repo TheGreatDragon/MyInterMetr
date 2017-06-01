@@ -120,7 +120,7 @@ namespace MyInterMetr
             INI.Write("LimitConnection", "Enabled", "False");
             INI.Write("LimitConnection", "Reset", "True");
             INI.Write("LimitConnection", "TimeLapse", "1");
-            INI.Write("LimitConnection", "LimitSize", "0.1");
+            INI.Write("LimitConnection", "LimitSize", "0,1");
             INI.Write("Traffic", "Download", "0");
             INI.Write("Traffic", "Upload", "0");
             //INI.Write("Grafic", "Enabled", "false");
@@ -361,7 +361,7 @@ namespace MyInterMetr
         }
         private void AboutProgramm(object sender, EventArgs e)
         {
-            MessageBox.Show("InterMetr\nВерсия 0.5\nCopyright ©2017\nГабдрахманов А.Г.", "О программе");
+            MessageBox.Show("InterMetr\nВерсия 0.5\nCopyright © 2015 - 2017\nГабдрахманов А.Г.", "О программе");
         }
 
         private void this_closed(object sender, EventArgs e)

@@ -176,28 +176,28 @@ namespace MyInterMetr
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
             this.showToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Text = "Показать";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.thi_show);
             // 
             // settingsToolStripMenuItem1
             // 
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
             this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.settingsToolStripMenuItem1.Text = "Settings";
+            this.settingsToolStripMenuItem1.Text = "Настройки";
             this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.OpenSettings);
             // 
             // statisticToolStripMenuItem1
             // 
             this.statisticToolStripMenuItem1.Name = "statisticToolStripMenuItem1";
             this.statisticToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.statisticToolStripMenuItem1.Text = "Statistic";
+            this.statisticToolStripMenuItem1.Text = "Статистика";
             this.statisticToolStripMenuItem1.Click += new System.EventHandler(this.OpenStatistic);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
             this.closeToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.closeToolStripMenuItem1.Text = "Close";
+            this.closeToolStripMenuItem1.Text = "Выход";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.this_close);
             // 
             // Trafficlabel

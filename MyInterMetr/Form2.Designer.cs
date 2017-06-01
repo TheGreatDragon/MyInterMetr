@@ -212,6 +212,7 @@
             this.TaskBarSpeed.TabIndex = 16;
             this.TaskBarSpeed.Text = "Показать скорость в панели задач";
             this.TaskBarSpeed.UseVisualStyleBackColor = true;
+            this.TaskBarSpeed.Visible = false;
             // 
             // OnTopOfWindows
             // 
@@ -249,12 +250,25 @@
             // Timelapse
             // 
             this.Timelapse.Location = new System.Drawing.Point(184, 42);
+            this.Timelapse.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.Timelapse.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Timelapse.Name = "Timelapse";
             this.Timelapse.Size = new System.Drawing.Size(47, 20);
             this.Timelapse.TabIndex = 2;
+            this.Timelapse.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Timelapse.Visible = false;
-            this.Timelapse.Minimum = 1;
-            this.Timelapse.Maximum = System.DateTime.DaysInMonth(System.DateTime.Today.Year, System.DateTime.Today.Month);
             this.Timelapse.ValueChanged += new System.EventHandler(this.ChangeDay);
             // 
             // limitsize
@@ -289,7 +303,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(263, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Платежный цикл, ежемесячно с                     числа";
+            this.label1.Text = "Платежный период, начинается с                   числа";
             this.label1.Visible = false;
             // 
             // LimitConnect

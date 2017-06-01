@@ -116,7 +116,9 @@ namespace MyInterMetr
 
         private void topfwindows(object sender, EventArgs e)
         {
-            frm.TopMost = true;
+            if (OnTopOfWindows.Checked == true)
+                frm.TopMost = true;
+            else frm.TopMost = false;
             INI.Write("Interface", "OnTopOfWindows", OnTopOfWindows.Checked.ToString());
         }
 
