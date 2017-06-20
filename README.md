@@ -4,4 +4,4 @@ A program that shows the current reception and sending speed. Traffic per sessio
 
 Wiki https://github.com/TheGreatDragon/MyInterMetr/wiki
 
-Download: 
+Download: https://github.com/TheGreatDragon/MyInterMetr/releases/download/
