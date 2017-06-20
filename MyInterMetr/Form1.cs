@@ -33,9 +33,8 @@ namespace MyInterMetr
         private double limit = 0;
         private Timer time;
         Form2 tmpForm;
-        private bool whattext = true;
 
-        int p;
+        int selectedinterface;
         private System.Net.NetworkInformation.IPv4InterfaceStatistics interfaceStats;
         private double bytesSentSpeed = 0, bytesReceivedSpeed = 0;
         private System.Net.NetworkInformation.NetworkInterface nic;
@@ -173,30 +172,60 @@ namespace MyInterMetr
                 Trafficlabel.Visible = true;
             }
         }
+
+        public bool ConnectionAvailable(string strServer)
+        {
+            try
+            {
+                HttpWebRequest reqFP = (HttpWebRequest)HttpWebRequest.Create(strServer);
+                HttpWebResponse rspFP = (HttpWebResponse)reqFP.GetResponse();
+                if (HttpStatusCode.OK == rspFP.StatusCode)
+                {
+                    // HTTP = 200 - Интернет безусловно есть!
+                    rspFP.Close();
+                    return true;
+                }
+                else
+                {
+                    // сервер вернул отрицательный ответ, возможно что инета нет
+                    rspFP.Close();
+                    return false;
+                }
+            }
+            catch (WebException)
+            {
+                // Ошибка, значит интернета у нас нет. Плачем :'(
+                return false;
+            }
+        }
+
         private void StartTimer()
         {
             time.Start();
         }
+
         public void InitializeNetworkInterface(object sender, EventArgs e)
         {
-            p = -1; InternetStat += 1;
+            selectedinterface = -1;
             if (bool.Parse(INI.ReadINI("InternetSetting", "AutoSearchEnabled")) == true)
             {
                 for (int i = 0; i < nicArr.Length; i++)
                     if ((nicArr[i].OperationalStatus == OperationalStatus.Up) &&
                         (nicArr[i].Supports(NetworkInterfaceComponent.IPv4)) &&
                         (nicArr[i].GetIPProperties().GatewayAddresses.Count > 0))
-                        p = i;
+                        selectedinterface = i;
             }
             else
             {
-                p = int.Parse(INI.ReadINI("InternetSetting", "AdapterIndex"));
+                selectedinterface = int.Parse(INI.ReadINI("InternetSetting", "AdapterIndex"));
                 bytesent = 0; byterecieved = 0;
                 lbyterecieved = 0; lbytesent = 0;
                 bytesSentSpeed = 0; bytesReceivedSpeed = 0;
                 AllSent = 0; AllReceived = 0;
             }
+            //
             UpdateNetworkInterface();
+            //
             if (progressBar1.Visible == true)
                 CheckLimits();
         }
@@ -210,51 +239,41 @@ namespace MyInterMetr
             //
             if (p != -1)
             {
-                InternetStat = 0;
                 nic = nicArr[p];
                 interfaceStats = nic.GetIPv4Statistics();
-                if (lbytesent != 0 || lbyterecieved != 0)
+                if (lbytesent > 0 || lbyterecieved > 0)
                 {
                     bytesSentSpeed = (interfaceStats.BytesSent - lbytesent);
                     bytesReceivedSpeed = (interfaceStats.BytesReceived - lbyterecieved);
                 }
                 lbyterecieved = interfaceStats.BytesReceived;
                 lbytesent = interfaceStats.BytesSent;
-                if ((bytesSentSpeed / 1024) < 1024)
-                    UpSpeed.Text += (bytesSentSpeed / 1024).ToString("N2") + " KB/s";
-                else UpSpeed.Text += (bytesSentSpeed / (1024 * 1024)).ToString("N2") + " MB/s";
-                if ((bytesReceivedSpeed / 1024) < 1024)
-                    DownSpeed.Text += (bytesReceivedSpeed / 1024).ToString("N2") + " KB/s";
-                else DownSpeed.Text += (bytesReceivedSpeed / (1024 * 1024)).ToString("N2") + " MB/s";
 
-                if (nicArr[p].GetIPv4Statistics().BytesSent != bytesSentSpeed)
-                {
-                    bytesent += bytesSentSpeed;
-                    byterecieved += bytesReceivedSpeed;
-                }
+                if (bytesSentSpeed < 1048576)
+                    UpSpeed.Text += (bytesSentSpeed / 1024).ToString("N2") + " KB/s";
+                else UpSpeed.Text += (bytesSentSpeed / 1048576).ToString("N2") + " MB/s";
+                if (bytesReceivedSpeed < 1048576)
+                    DownSpeed.Text += (bytesReceivedSpeed / 1024).ToString("N2") + " KB/s";
+                else DownSpeed.Text += (bytesReceivedSpeed / 1048576).ToString("N2") + " MB/s";
+                //
+                bytesent += bytesSentSpeed;
+                byterecieved += bytesReceivedSpeed;
             }
-            if (InternetStat == 2)
-                MessageBox.Show("No Internet");
             //
-            if ((byterecieved / 1000) < 1000)
-                Downloaded.Text += (byterecieved / 1000).ToString("N2") + " KB";
-            else if (((byterecieved / (1048576)) < 1000))
-                Downloaded.Text += (byterecieved / (1000000)).ToString("N2") + " MB";
-            else Downloaded.Text += (byterecieved / (1000000000)).ToString("N2") + " GB";
-            //
-            if (bytesent < 1000000)
-                Uploaded.Text += (bytesent / 1000).ToString("N2") + " KB";
-            else if (bytesent < 1000000000)
-                Uploaded.Text += (bytesent / 1000000).ToString("N2") + " MB";
-            else Uploaded.Text += (bytesent / 1000000000).ToString("N2") + " GB";
-            //
-            if ((bytesent + byterecieved) < 1000000)
-                Trafficlabel.Text += ((bytesent + byterecieved) / 1000).ToString("N2") + " KB";
-            else if ((bytesent + byterecieved) < 1000000000)
-                Trafficlabel.Text += ((bytesent + byterecieved) / 1000000).ToString("N2") + " MB";
-            else Trafficlabel.Text += ((bytesent + byterecieved) / 1000000000).ToString("N2") + " GB";
+            Downloaded.Text += SetText(byterecieved);
+            Uploaded.Text += SetText(bytesent);
+            Trafficlabel.Text += SetText(bytesent + byterecieved);
             //
             progressBar1.CustomText = Trafficlabel.Text;
+        }
+
+        private string SetText(double bytes)
+        {
+            if (bytes < 1000000)
+                return (bytes / 1000).ToString("N2") + " KB";
+            else if (bytes < 1000000000)
+                return (bytes / 1000000).ToString("N2") + " MB";
+            else return (bytes / 1000000000).ToString("N2") + " GB";
         }
 
         private void ShowDetailTrafik(object sender, EventArgs e)
@@ -361,7 +380,7 @@ namespace MyInterMetr
         }
         private void AboutProgramm(object sender, EventArgs e)
         {
-            MessageBox.Show("MyInterMetr\nВерсия 0.5\nCopyright © 2015 - 2017\nГабдрахманов А.Г.", "О программе");
+            MessageBox.Show("MyInterMetr\nВерсия 0.5.1\nCopyright © 2015 - 2017\nГабдрахманов А.Г.", "О программе");
         }
 
         private void this_closed(object sender, EventArgs e)
