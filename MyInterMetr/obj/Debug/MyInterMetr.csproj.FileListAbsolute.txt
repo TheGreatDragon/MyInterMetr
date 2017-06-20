@@ -1,9 +1,0 @@
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.Form1.resources
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.Properties.Resources.resources
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.csproj.GenerateResource.Cache
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Debug\MyInterMetr.exe.config
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Debug\MyInterMetr.exe
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\bin\Debug\MyInterMetr.pdb
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.exe
-c:\users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.pdb
-C:\Users\dream\documents\visual studio 2017\Projects\MyInterMetr\MyInterMetr\obj\Debug\MyInterMetr.Form2.resources
