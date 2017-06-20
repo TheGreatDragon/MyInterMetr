@@ -237,9 +237,9 @@ namespace MyInterMetr
             Downloaded.Text = "";
             Trafficlabel.Text = "";
             //
-            if (p != -1)
+            if (selectedinterface != -1)
             {
-                nic = nicArr[p];
+                nic = nicArr[selectedinterface];
                 interfaceStats = nic.GetIPv4Statistics();
                 if (lbytesent > 0 || lbyterecieved > 0)
                 {
